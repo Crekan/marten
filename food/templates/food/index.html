@@ -88,29 +88,31 @@
                     <h2>Deal of the Week</h2>
                 </div>
                 {% for best_product in best_products %}
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="deal-img wow fadeInLeft">
-                            <a href="#"><img src="{{ best_product.product.images.url }}" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="deal-content">
-                            <h3><a href="#">{{ best_product.product.title }}</a></h3>
-                            <div class="deal-pro-price">
-                                <span class="deal-old-price">${{ best_product.product.old_price }} </span>
-                                <span> ${{ best_product.product.new_price }}</span>
-                            </div>
-                            <p>{{ best_product.product.description }} </p>
-                            <div class="timer timer-style">
-                                <div data-countdown="{{ best_product.end_of_discount.isoformat }}"></div>
-                            </div>
-                            <div class="discount-btn mt-35">
-                                <a class="btn-style" href="#">SHOP NOW</a>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="deal-img wow fadeInLeft">
+                                <a href="#"><img src="{{ best_product.product.images.url }}" alt=""></a>
                             </div>
                         </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="deal-content">
+                                <h3><a href="#">{{ best_product.product.title }}</a></h3>
+                                <div class="deal-pro-price">
+                                    {% if best_product.product.old_price %}
+                                        <span class="deal-old-price">${{ best_product.product.old_price }} </span>
+                                    {% endif %}
+                                    <span> ${{ best_product.product.new_price }}</span>
+                                </div>
+                                <p>{{ best_product.product.description }} </p>
+                                <div class="timer timer-style">
+                                    <div data-countdown="{{ best_product.end_of_discount.isoformat }}"></div>
+                                </div>
+                                <div class="discount-btn mt-35">
+                                    <a class="btn-style" href="#">SHOP NOW</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
                 {% endfor %}
             </div>
         </div>
@@ -121,57 +123,23 @@
                     <div class="col-lg-10 ml-auto mr-auto">
                         <div class="testimonial-wrap">
                             <div class="testimonial-text-slider text-center">
-                                <div class="sin-testiText">
-                                    <p>Lorem ipsum dolor sit amet, co adipisicing elit, sed do eiusmod tempor incididunt
-                                        ut
-                                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercita
-                                        ullamco laboris nisi ut aliquip ex ea commodo</p>
-                                </div>
-                                <div class="sin-testiText">
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority
-                                        have
-                                        suffered alteration in some form, by injected humour, or amro porano ja cai tomi
-                                        tai
-                                        go amro porano amro porano ja cai tomi tai go .... </p>
-                                </div>
-                                <div class="sin-testiText">
-                                    <p>Lorem ipsum dolor sit amet, co adipisicing elit, sed do eiusmod tempor incididunt
-                                        ut
-                                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercita
-                                        ullamco laboris nisi ut aliquip ex ea commodo</p>
-                                </div>
-                                <div class="sin-testiText">
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority
-                                        have
-                                        suffered alteration in some form, by injected humour, or amro porano ja cai tomi
-                                        tai
-                                        go amro porano amro porano ja cai tomi tai go .... </p>
-                                </div>
+                                {% for comment_home in comments_home %}
+                                    <div class="sin-testiText">
+                                        <p>{{ comment_home.comment }}</p>
+                                    </div>
+                                {% endfor %}
                             </div>
                             <div class="testimonial-image-slider text-center">
+                                {% for comment_home in comments_home %}
                                 <div class="sin-testiImage">
-                                    <img src="assets/img/testi/3.jpg" alt="">
-                                    <h3>Robiul Islam</h3>
-                                    <h5>Customer</h5>
+                                    <img src="{{ comment_home.images.url }}" alt="">
+                                    <h3>{{ comment_home.full_name }}</h3>
+                                    <h5>{{ comment_home.profession }}</h5>
                                 </div>
-                                <div class="sin-testiImage">
-                                    <img src="assets/img/testi/4.jpg" alt="">
-                                    <h3>Robiul Islam</h3>
-                                    <h5>Customer</h5>
-                                </div>
-                                <div class="sin-testiImage">
-                                    <img src="assets/img/testi/3.jpg" alt="">
-                                    <h3>F. H. Shuvo</h3>
-                                    <h5>Developer</h5>
-                                </div>
-                                <div class="sin-testiImage">
-                                    <img src="assets/img/testi/5.jpg" alt="">
-                                    <h3>T. T. Rayed</h3>
-                                    <h5>CEO</h5>
-                                </div>
+                                {% endfor %}
                             </div>
                             <div class="testimonial-shap">
-                                <img src="assets/img/icon-img/testi-shap.png" alt="">
+                                <img src="{% static 'assets/img/icon-img/testi-shap.png' %}" alt="">
                             </div>
                         </div>
                     </div>
@@ -183,21 +151,21 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
                         <div class="service-content text-center mb-30 service-color-1">
-                            <img src="assets/img/icon-img/shipping.png" alt="">
+                            <img src="{% static 'assets/img/icon-img/shipping.png' %}" alt="">
                             <h4>FREE SHIPPING</h4>
                             <p>Free shipping on all order </p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <div class="service-content text-center mb-30 service-color-2">
-                            <img src="assets/img/icon-img/support.png" alt="">
+                            <img src="{% static 'assets/img/icon-img/support.png' %}" alt="">
                             <h4>ONLINE SUPPORT</h4>
                             <p>Online support 24 hours a day</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <div class="service-content text-center mb-30 service-color-3">
-                            <img src="assets/img/icon-img/money.png" alt="">
+                            <img src="{% static 'assets/img/icon-img/money.png' %}" alt="">
                             <h4>MONEY RETURN</h4>
                             <p>Back guarantee under 5 days</p>
                         </div>
@@ -212,54 +180,24 @@
                     <h2>From Our Blog</h2>
                 </div>
                 <div class="row">
+                    {% for blog in blogs %}
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-wrapper mb-30 gray-bg">
                             <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="assets/img/blog/blog-1.jpg"></a>
+                                <a href="blog-details.html"><img alt="" src="{{ blog.image.url }}"></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-meta">
                                     <ul>
-                                        <li>By: <span>Admin</span></li>
-                                        <li>Sep 14, 2018</li>
+                                        <li>By: <span>{{ blog.user }}</span></li>
+                                        <li>{{ blog.date_added }}</li>
                                     </ul>
                                 </div>
-                                <h4><a href="blog-details.html">Lorem ipsum dolor amet cons adipisicing elit</a></h4>
+                                <h4><a href="blog-details.html">{{ blog.title }}</a></h4>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrapper mb-30 gray-bg">
-                            <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="assets/img/blog/blog-2.jpg"></a>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li>By: <span>Admin</span></li>
-                                        <li>Sep 14, 2018</li>
-                                    </ul>
-                                </div>
-                                <h4><a href="blog-details.html">Lorem ipsum dolor amet cons adipisicing elit</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrapper mb-30 gray-bg">
-                            <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="assets/img/blog/blog-3.jpg"></a>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li>By: <span>Admin</span></li>
-                                        <li>Sep 14, 2018</li>
-                                    </ul>
-                                </div>
-                                <h4><a href="blog-details.html">Lorem ipsum dolor amet cons adipisicing elit</a></h4>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

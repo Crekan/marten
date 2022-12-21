@@ -1,0 +1,70 @@
+[
+{
+  "model": "food.slider",
+  "pk": 1,
+  "fields": {
+    "images": "slider_images/ba43a8bf5b491168b4f74e9922c88c25.jpg",
+    "description": "Test slider",
+    "title": "test slider"
+  }
+},
+{
+  "model": "food.slider",
+  "pk": 2,
+  "fields": {
+    "images": "slider_images/ba43a8bf5b491168b4f74e9922c88c25_Riwnpmh.jpg",
+    "description": "aaaa",
+    "title": "bbbb"
+  }
+},
+{
+  "model": "food.products",
+  "pk": 2,
+  "fields": {
+    "images": "products_images/ba43a8bf5b491168b4f74e9922c88c25_LYzC62s.jpg",
+    "title": "Test product 1",
+    "description": "description 1",
+    "new_price": "12.00",
+    "old_price": "0.00"
+  }
+},
+{
+  "model": "food.products",
+  "pk": 3,
+  "fields": {
+    "images": "products_images/ba43a8bf5b491168b4f74e9922c88c25_T7XCQpc.jpg",
+    "title": "Test product 2",
+    "description": "description 2",
+    "new_price": "11.00",
+    "old_price": "22.00"
+  }
+},
+{
+  "model": "food.bestproduct",
+  "pk": 1,
+  "fields": {
+    "product": 3,
+    "end_of_discount": "2022-12-31"
+  }
+},
+{
+  "model": "food.commentshome",
+  "pk": 1,
+  "fields": {
+    "comment": "Lorem ipsum dolor sit amet, co adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercita ullamco laboris nisi ut aliquip ex ea commodo",
+    "images": "comments_home_images/ba43a8bf5b491168b4f74e9922c88c25.jpg",
+    "full_name": "Vania Kazeko",
+    "profession": "Devoloper"
+  }
+},
+{
+  "model": "food.commentshome",
+  "pk": 2,
+  "fields": {
+    "comment": "asda",
+    "images": "comments_home_images/ba43a8bf5b491168b4f74e9922c88c25_dxVlAhb.jpg",
+    "full_name": "zxcvxzcv",
+    "profession": "zxcvxzcvz"
+  }
+}
+]

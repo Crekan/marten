@@ -39,3 +39,17 @@ class BestProduct(models.Model):
     class Meta:
         verbose_name = 'Best Product'
         verbose_name_plural = 'Best Products'
+
+
+class CommentsHome(models.Model):
+    comment = models.TextField(verbose_name='Comment')
+    images = models.ImageField(upload_to='comments_home_images/', verbose_name='Photo')
+    full_name = models.CharField(max_length=255, verbose_name='Full name')
+    profession = models.CharField(max_length=150, verbose_name='Profession')
+
+    def __str__(self):
+        return self.full_name
+
+    class Meta:
+        verbose_name = 'Comment Home'
+        verbose_name_plural = 'Comment Home'

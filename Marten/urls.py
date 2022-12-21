@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('food/', include('food.urls')),
+    path('user/', include('user.urls')),
 
     path('', HomeView.as_view(), name='home')
 ]

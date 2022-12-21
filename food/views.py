@@ -1,12 +1,13 @@
-from django.views.generic import TemplateView, ListView
+from django.views.generic import ListView, TemplateView
 
-from .models import Slider, Products, BestProduct, CommentsHome, Category
 from blog.models import Blog
+
+from .models import BestProduct, Category, CommentsHome, Products, Slider
 
 
 class HomeView(TemplateView):
     template_name = 'food/index.html'
-    
+
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data()
         context['sliders'] = Slider.objects.all()
@@ -21,7 +22,7 @@ class FoodView(ListView):
     model = Products
     template_name = 'food/shop-page.html'
     context_object_name = 'products'
-    paginate_by = 1
+    paginate_by = 9
 
     def get_queryset(self):
         queryset = super(FoodView, self).get_queryset()

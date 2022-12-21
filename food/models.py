@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Slider(models.Model):
@@ -65,3 +66,19 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
+
+
+class Brand(models.Model):
+    name = models.CharField(max_length=250, verbose_name='Name Brand')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Brand'
+        verbose_name_plural = 'Brands'
+
+    def get_absolute_url(self):
+        return reverse('brand', kwargs={
+            'brand_id': self.id
+        })

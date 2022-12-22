@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Authorization and registration
+    Authorization
 {% endblock %}
 
 
@@ -25,10 +25,10 @@
                 <div class="col-lg-7 col-md-12 ml-auto mr-auto">
                     <div class="login-register-wrapper">
                         <div class="login-register-tab-list nav">
-                            <a class="active" data-toggle="tab" href="#lg1">
+                            <a class="active" href="{% url 'authorization' %}">
                                 <h4> login </h4>
                             </a>
-                            <a data-toggle="tab" href="#lg2">
+                            <a class="" href="{% url 'registration' %}">
                                 <h4> register </h4>
                             </a>
                         </div>
@@ -36,7 +36,7 @@
                             <div id="lg1" class="tab-pane active">
                                 <div class="login-form-container">
                                     <div class="login-register-form">
-                                        <form action="{% url 'authorization_registration' %}" method="post">
+                                        <form action="{% url 'authorization' %}" method="post">
                                             {% csrf_token %}
                                             {{ form.username }}
 
@@ -53,7 +53,6 @@
                                     </div>
                                 </div>
                             </div>
-                            {% include 'user/registrations.html' %}
                         </div>
                     </div>
                 </div>

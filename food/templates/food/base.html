@@ -114,7 +114,7 @@
                         </div>
                         {% if user.is_authenticated %}
                             <div class="header-login same-style">
-                                <a href="{% url 'registration' %}"><i class="icon-user icons"></i></a>
+                                <a href="{% url 'profile' user.id %}"><i class="icon-user icons"></i></a>
                             </div>
                         {% else %}
                             <div class="header-login same-style">

@@ -1,15 +1,12 @@
-from django.conf import settings
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, UpdateView
-from django.contrib.auth.views import LogoutView
 
-from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
+from .forms import UserLoginForm, UserProfileForm, UserRegistrationForm
 
 
 class UserLoginView(LoginView):

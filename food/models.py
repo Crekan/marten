@@ -3,12 +3,10 @@ from django.urls import reverse
 
 
 class Slider(models.Model):
-    images = models.ImageField(upload_to='slider_images/', verbose_name='Image')
-    description = models.CharField(max_length=150, verbose_name='Description')
-    title = models.CharField(max_length=250, verbose_name='Header')
+    product = models.ForeignKey('Products', on_delete=models.CASCADE, verbose_name='Product Slider', null=True)
 
     def __str__(self):
-        return self.title
+        return self.product.title
 
     class Meta:
         verbose_name = 'Slider'
@@ -22,6 +20,11 @@ class Products(models.Model):
     new_price = models.DecimalField(max_digits=4, decimal_places=2, verbose_name='New price')
     old_price = models.DecimalField(max_digits=4, decimal_places=2, blank=True, verbose_name='Old price', default=0)
     category = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name='Category', null=True)
+    availability = models.ForeignKey('Availability', on_delete=models.CASCADE, verbose_name='Availability', null=True)
+    vendor_code = models.CharField(max_length=255, verbose_name='Vendor Code', null=True)
+    color = models.ForeignKey('Color', on_delete=models.CASCADE, verbose_name='Color', null=True)
+    quantity = models.PositiveIntegerField(default=0, verbose_name='Quantity', null=True)
+    long_description = models.TextField(verbose_name='Full description', null=True)
 
     def __str__(self):
         return self.title
@@ -82,3 +85,17 @@ class Brand(models.Model):
         return reverse('brand', kwargs={
             'brand_id': self.id
         })
+
+
+class Color(models.Model):
+    name = models.CharField(max_length=250, verbose_name='Color')
+
+    def __str__(self):
+        return self.name
+
+
+class Availability(models.Model):
+    title = models.CharField(max_length=250, verbose_name='Availability')
+
+    def __str__(self):
+        return self.title

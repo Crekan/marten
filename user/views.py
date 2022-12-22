@@ -1,8 +1,13 @@
+from django.conf import settings
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import CreateView, UpdateView
+from django.contrib.auth.views import LogoutView
 
 from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 
@@ -26,3 +31,9 @@ class UserProfileView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('profile', args=(self.object.id,))
+
+
+class UserLogoutView(View):
+    def get(self, request):
+        logout(request)
+        return HttpResponseRedirect(reverse_lazy('home'))

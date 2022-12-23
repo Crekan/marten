@@ -16,15 +16,21 @@ class Slider(models.Model):
 class Products(models.Model):
     images = models.ImageField(upload_to='products_images/', verbose_name='Image')
     title = models.CharField(max_length=200, verbose_name='Header')
+    slug = models.SlugField(unique=True, max_length=250, verbose_name='Url', db_index=True, null=True)
     description = models.TextField(verbose_name='Description', null=True)
     new_price = models.DecimalField(max_digits=4, decimal_places=2, verbose_name='New price')
     old_price = models.DecimalField(max_digits=4, decimal_places=2, blank=True, verbose_name='Old price', default=0)
     category = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name='Category', null=True)
     availability = models.ForeignKey('Availability', on_delete=models.CASCADE, verbose_name='Availability', null=True)
     vendor_code = models.CharField(max_length=255, verbose_name='Vendor Code', null=True)
-    color = models.ForeignKey('Color', on_delete=models.CASCADE, verbose_name='Color', null=True)
+    color = models.ManyToManyField('Color', verbose_name='Color')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Quantity', null=True)
     long_description = models.TextField(verbose_name='Full description', null=True)
+    # More information
+    name = models.CharField(max_length=250, verbose_name='Name', null=True)
+    size = models.ManyToManyField('Size')
+    length = models.ManyToManyField('Length')
+    brand = models.ManyToManyField('Brand')
 
     def __str__(self):
         return self.title
@@ -99,3 +105,17 @@ class Availability(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Size(models.Model):
+    size = models.CharField(max_length=100, verbose_name='Size')
+
+    def __str__(self):
+        return self.size
+
+
+class Length(models.Model):
+    length = models.CharField(max_length=100, verbose_name='length')
+
+    def __str__(self):
+        return self.length

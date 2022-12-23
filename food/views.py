@@ -1,8 +1,9 @@
-from django.views.generic import ListView, TemplateView, DetailView
+from django.views.generic import DetailView, ListView, TemplateView
 
 from blog.models import Blog
 
-from .models import BestProduct, Category, CommentsHome, Products, Slider
+from .models import (BestProduct, Category, CommentsHome, Products,
+                     Slider)
 
 
 class HomeView(TemplateView):
@@ -37,6 +38,6 @@ class FoodView(ListView):
 
 class ProductsView(DetailView):
     model = Products
-    pk_url_kwarg = 'product_id'
+    slug_url_kwarg = 'product'
     template_name = 'food/product-details.html'
     context_object_name = 'product'

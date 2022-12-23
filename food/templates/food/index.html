@@ -23,7 +23,7 @@
                                     <h3 class="animated">{{ slider.product.description|truncatewords:5 }}</h3>
                                     <h1 class="animated">{{ slider.product.title }}</h1>
                                     <div class="slider-btn">
-                                        <a class="animated" href="{% url 'food:product_detail' slider.product.id %}">SHOP
+                                        <a class="animated" href="{% url 'food:product_detail' slider.product.slug %}">SHOP
                                             NOW</a>
                                     </div>
                                 </div>
@@ -50,7 +50,7 @@
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                             <div class="product-wrapper mb-10">
                                 <div class="product-img">
-                                    <a href="{% url 'food:product_detail' product.id %}">
+                                    <a href="{% url 'food:product_detail' product.slug %}">
                                         <img src="{{ product.images.url }}" alt="">
                                     </a>
                                     <div class="product-action">
@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h4><a href="{% url 'food:product_detail' product.id %}">{{ product.title }}</a>
+                                    <h4><a href="{% url 'food:product_detail' product.slug %}">{{ product.title }}</a>
                                     </h4>
                                     <div class="product-price">
                                         <span class="new">${{ product.new_price }} </span>
@@ -94,14 +94,14 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="deal-img wow fadeInLeft">
-                                    <a href="{% url 'food:product_detail' best_product.product.id %}"><img
+                                    <a href="{% url 'food:product_detail' best_product.product.slug %}"><img
                                             src="{{ best_product.product.images.url }}" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="deal-content">
                                     <h3>
-                                        <a href="{% url 'food:product_detail' best_product.product.id %}">{{ best_product.product.title }}</a>
+                                        <a href="{% url 'food:product_detail' best_product.product.slug %}">{{ best_product.product.title }}</a>
                                     </h3>
                                     <div class="deal-pro-price">
                                         {% if best_product.product.old_price %}
@@ -115,7 +115,7 @@
                                     </div>
                                     <div class="discount-btn mt-35">
                                         <a class="btn-style"
-                                           href="{% url 'food:product_detail' best_product.product.id %}">SHOP NOW</a>
+                                           href="{% url 'food:product_detail' best_product.product.slug %}">SHOP NOW</a>
                                     </div>
                                 </div>
                             </div>

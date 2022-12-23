@@ -78,7 +78,10 @@
                         <div class="product-details-style shorting-style mt-30">
                             <label>color:</label>
                             <select>
-                                <option value=""> {{ product.color }}</option>
+                                <option value="">Choose An Option</option>
+                                {% for color in product.color.all %}
+                                    <option value=""> {{ color }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="quality-wrapper mt-30 product-quantity">
@@ -132,7 +135,7 @@
 
                         <div class="product-anotherinfo-wrapper">
                             <ul>
-                            <li><span>name:</span> {{ product.name }}</li>
+                                <li><span>name:</span> {{ product.name }}</li>
                                 <li><span>color:</span>
                                     {% for color in product.color.all %}
                                         {{ color }},
@@ -245,6 +248,7 @@
             </div>
         </div>
     </div>
+
     <div class="related-product-area pt-95 pb-80 gray-bg">
         <div class="container">
             <div class="section-title text-center mb-55">
@@ -254,8 +258,8 @@
             <div class="related-product-active owl-carousel">
                 <div class="product-wrapper">
                     <div class="product-img">
-                        <a href="product-details.html">
-                            <img src="assets/img/product/product-4.jpg" alt="">
+                        <a href="{% url 'food:product_detail' product.slug %}">
+                            <img src="{{ product.images.url }}" alt="">
                         </a>
                         <div class="product-action">
                             <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
@@ -272,234 +276,16 @@
                         </div>
                     </div>
                     <div class="product-content">
-                        <h4><a href="product-details.html">Dog Calcium Food</a></h4>
+                        <h4><a href="product-details.html">{{ product.title }}</a></h4>
                         <div class="product-price">
-                            <span class="new">$20.00 </span>
-                            <span class="old">$50.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="product-details.html">
-                            <img src="assets/img/product/product-5.jpg" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="ti-plus"></i>
-                            </a>
-                            <a title="Add To Cart" href="#">
-                                <i class="ti-shopping-cart"></i>
-                            </a>
-                        </div>
-                        <div class="product-action-wishlist">
-                            <a title="Wishlist" href="#">
-                                <i class="ti-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">Cat Buffalo Food</a></h4>
-                        <div class="product-price">
-                            <span class="new">$22.00 </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="product-details.html">
-                            <img src="assets/img/product/product-6.jpg" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="ti-plus"></i>
-                            </a>
-                            <a title="Add To Cart" href="#">
-                                <i class="ti-shopping-cart"></i>
-                            </a>
-                        </div>
-                        <div class="product-action-wishlist">
-                            <a title="Wishlist" href="#">
-                                <i class="ti-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">Legacy Dog Food</a></h4>
-                        <div class="product-price">
-                            <span class="new">$50.00 </span>
-                            <span class="old">$70.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="product-details.html">
-                            <img src="assets/img/product/product-7.jpg" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="ti-plus"></i>
-                            </a>
-                            <a title="Add To Cart" href="#">
-                                <i class="ti-shopping-cart"></i>
-                            </a>
-                        </div>
-                        <div class="product-action-wishlist">
-                            <a title="Wishlist" href="#">
-                                <i class="ti-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">Chicken Dry Cat Food</a></h4>
-                        <div class="product-price">
-                            <span class="new">$60.00 </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="product-details.html">
-                            <img src="assets/img/product/product-8.jpg" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="ti-plus"></i>
-                            </a>
-                            <a title="Add To Cart" href="#">
-                                <i class="ti-shopping-cart"></i>
-                            </a>
-                        </div>
-                        <div class="product-action-wishlist">
-                            <a title="Wishlist" href="#">
-                                <i class="ti-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">Stomach Dog Food</a></h4>
-                        <div class="product-price">
-                            <span class="new">$70.00 </span>
-                            <span class="old">$90.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrapper">
-                    <div class="product-img">
-                        <a href="product-details.html">
-                            <img src="assets/img/product/product-9.jpg" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="ti-plus"></i>
-                            </a>
-                            <a title="Add To Cart" href="#">
-                                <i class="ti-shopping-cart"></i>
-                            </a>
-                        </div>
-                        <div class="product-action-wishlist">
-                            <a title="Wishlist" href="#">
-                                <i class="ti-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">Nourish Puppy Food</a></h4>
-                        <div class="product-price">
-                            <span class="new">$80.00 </span>
+                            <span class="new">${{ product.new_price }} </span>
+                            {% if product.old_price %}
+                                <span class="old">${{ product.old_price }}</span>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- modal -->
-    {#        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">#}
-    {#            <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
-    {#                <span class="ti-close" aria-hidden="true"></span>#}
-    {#            </button>#}
-    {#            <div class="modal-dialog" role="document">#}
-    {#                <div class="modal-content">#}
-    {#                    <div class="modal-body">#}
-    {#                        <div class="qwick-view-left">#}
-    {#                            <div class="quick-view-learg-img">#}
-    {#                                <div class="quick-view-tab-content tab-content">#}
-    {#                                    <div class="tab-pane active show fade" id="modal1" role="tabpanel">#}
-    {#                                        <img src="assets/img/quick-view/l1.jpg" alt="">#}
-    {#                                    </div>#}
-    {#                                    <div class="tab-pane fade" id="modal2" role="tabpanel">#}
-    {#                                        <img src="assets/img/quick-view/l2.jpg" alt="">#}
-    {#                                    </div>#}
-    {#                                    <div class="tab-pane fade" id="modal3" role="tabpanel">#}
-    {#                                        <img src="assets/img/quick-view/l3.jpg" alt="">#}
-    {#                                    </div>#}
-    {#                                </div>#}
-    {#                            </div>#}
-    {#                            <div class="quick-view-list nav" role="tablist">#}
-    {#                                <a class="active" href="#modal1" data-toggle="tab" role="tab">#}
-    {#                                    <img src="assets/img/quick-view/s1.jpg" alt="">#}
-    {#                                </a>#}
-    {#                                <a href="#modal2" data-toggle="tab" role="tab">#}
-    {#                                    <img src="assets/img/quick-view/s2.jpg" alt="">#}
-    {#                                </a>#}
-    {#                                <a href="#modal3" data-toggle="tab" role="tab">#}
-    {#                                    <img src="assets/img/quick-view/s3.jpg" alt="">#}
-    {#                                </a>#}
-    {#                            </div>#}
-    {#                        </div>#}
-    {#                        <div class="qwick-view-right">#}
-    {#                            <div class="qwick-view-content">#}
-    {#                                <h3>Dog Calcium Food</h3>#}
-    {#                                <div class="product-price">#}
-    {#                                    <span>$19.00 </span>#}
-    {#                                </div>#}
-    {#                                <div class="product-rating">#}
-    {#                                    <i class="ion-star theme-color"></i>#}
-    {#                                    <i class="ion-star theme-color"></i>#}
-    {#                                    <i class="ion-star theme-color"></i>#}
-    {#                                    <i class="ion-star theme-color"></i>#}
-    {#                                    <i class="ion-star theme-color"></i>#}
-    {#                                </div>#}
-    {#                                <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do amt tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .</p>#}
-    {#                                <div class="quick-view-select">#}
-    {#                                    <div class="select-option-part">#}
-    {#                                        <label>Size*</label>#}
-    {#                                        <select class="select">#}
-    {#                                            <option value="">- Please Select -</option>#}
-    {#                                            <option value="">XS</option>#}
-    {#                                            <option value="">S</option>#}
-    {#                                            <option value="">M</option>#}
-    {#                                            <option value=""> L</option>#}
-    {#                                            <option value="">XL</option>#}
-    {#                                            <option value="">XXL</option>#}
-    {#                                        </select>#}
-    {#                                    </div>#}
-    {#                                    <div class="select-option-part">#}
-    {#                                        <label>Color*</label>#}
-    {#                                        <select class="select">#}
-    {#                                            <option value="">- Please Select -</option>#}
-    {#                                            <option value="">orange</option>#}
-    {#                                            <option value="">pink</option>#}
-    {#                                            <option value="">yellow</option>#}
-    {#                                        </select>#}
-    {#                                    </div>#}
-    {#                                </div>#}
-    {#                                <div class="quickview-plus-minus">#}
-    {#                                    <div class="cart-plus-minus">#}
-    {#                                        <input type="text" value="2" name="qtybutton" class="cart-plus-minus-box">#}
-    {#                                    </div>#}
-    {#                                    <div class="quickview-btn-cart">#}
-    {#                                        <a class="btn-style" href="#">add to cart</a>#}
-    {#                                    </div>#}
-    {#                                    <div class="quickview-btn-wishlist">#}
-    {#                                        <a class="btn-hover" href="#"><i class="ti-heart"></i></a>#}
-    {#                                    </div>#}
-    {#                                </div>#}
-    {#                            </div>#}
-    {#                        </div>#}
-    {#                    </div>#}
-    {#                </div>#}
-    {#            </div>#}
-    {#        </div>#}
 {% endblock %}

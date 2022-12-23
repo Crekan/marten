@@ -63,7 +63,9 @@
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h4><a href="{% url 'food:product_detail' product.slug %}">{{ product.title }}</a></h4>
+                                                <h4>
+                                                    <a href="{% url 'food:product_detail' product.slug %}">{{ product.title }}</a>
+                                                </h4>
                                                 <div class="product-price">
                                                     <span class="new">${{ product.new_price }} </span>
                                                     {% if product.old_price %}
@@ -154,7 +156,8 @@
                             <div class="shop-list-style mt-20">
                                 {% for category in categories %}
                                     <ul>
-                                        <li><a href="{% url 'food:category' category.id %}">{{ category.title }}</a></li>
+                                        <li><a href="{% url 'food:category' category.id %}">{{ category.title }}</a>
+                                        </li>
                                     </ul>
                                 {% endfor %}
                             </div>

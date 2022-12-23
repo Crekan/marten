@@ -43,7 +43,7 @@
                                     <div class="product-width col-lg-6 col-xl-4 col-md-6 col-sm-6">
                                         <div class="product-wrapper mb-10">
                                             <div class="product-img">
-                                                <a href="product-details.html">
+                                                <a href="{% url 'food:product_detail' product.id %}">
                                                     <img src="{{ product.images.url }}" alt="">
                                                 </a>
                                                 <div class="product-action">
@@ -63,7 +63,7 @@
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h4><a href="product-details.html">{{ product.title }}</a></h4>
+                                                <h4><a href="{% url 'food:product_detail' product.id %}">{{ product.title }}</a></h4>
                                                 <div class="product-price">
                                                     <span class="new">${{ product.new_price }} </span>
                                                     {% if product.old_price %}
@@ -150,11 +150,11 @@
                             </div>
                         </div>
                         <div class="shop-widget mt-50">
-                            <a href="{% url 'food' %}"><h4 class="shop-sidebar-title">Food Category </h4></a>
+                            <a href="{% url 'food:food' %}"><h4 class="shop-sidebar-title">Food Category </h4></a>
                             <div class="shop-list-style mt-20">
                                 {% for category in categories %}
                                     <ul>
-                                        <li><a href="{% url 'category' category.id %}">{{ category.title }}</a></li>
+                                        <li><a href="{% url 'food:category' category.id %}">{{ category.title }}</a></li>
                                     </ul>
                                 {% endfor %}
                             </div>

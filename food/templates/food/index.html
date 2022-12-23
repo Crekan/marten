@@ -23,7 +23,8 @@
                                     <h3 class="animated">{{ slider.product.description|truncatewords:5 }}</h3>
                                     <h1 class="animated">{{ slider.product.title }}</h1>
                                     <div class="slider-btn">
-                                        <a class="animated" href="product-details.html">SHOP NOW</a>
+                                        <a class="animated" href="{% url 'food:product_detail' slider.product.id %}">SHOP
+                                            NOW</a>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +50,7 @@
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                             <div class="product-wrapper mb-10">
                                 <div class="product-img">
-                                    <a href="product-details.html">
+                                    <a href="{% url 'food:product_detail' product.id %}">
                                         <img src="{{ product.images.url }}" alt="">
                                     </a>
                                     <div class="product-action">
@@ -67,7 +68,8 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h4><a href="product-details.html">{{ product.title }}</a></h4>
+                                    <h4><a href="{% url 'food:product_detail' product.id %}">{{ product.title }}</a>
+                                    </h4>
                                     <div class="product-price">
                                         <span class="new">${{ product.new_price }} </span>
                                         {% if product.old_price %}
@@ -92,12 +94,15 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="deal-img wow fadeInLeft">
-                                    <a href="#"><img src="{{ best_product.product.images.url }}" alt=""></a>
+                                    <a href="{% url 'food:product_detail' best_product.product.id %}"><img
+                                            src="{{ best_product.product.images.url }}" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="deal-content">
-                                    <h3><a href="#">{{ best_product.product.title }}</a></h3>
+                                    <h3>
+                                        <a href="{% url 'food:product_detail' best_product.product.id %}">{{ best_product.product.title }}</a>
+                                    </h3>
                                     <div class="deal-pro-price">
                                         {% if best_product.product.old_price %}
                                             <span class="deal-old-price">${{ best_product.product.old_price }} </span>
@@ -109,7 +114,8 @@
                                         <div data-countdown="{{ best_product.end_of_discount.isoformat }}"></div>
                                     </div>
                                     <div class="discount-btn mt-35">
-                                        <a class="btn-style" href="#">SHOP NOW</a>
+                                        <a class="btn-style"
+                                           href="{% url 'food:product_detail' best_product.product.id %}">SHOP NOW</a>
                                     </div>
                                 </div>
                             </div>

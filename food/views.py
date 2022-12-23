@@ -1,4 +1,4 @@
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, TemplateView, DetailView
 
 from blog.models import Blog
 
@@ -33,3 +33,10 @@ class FoodView(ListView):
         context = super(FoodView, self).get_context_data()
         context['categories'] = Category.objects.all()
         return context
+
+
+class ProductsView(DetailView):
+    model = Products
+    pk_url_kwarg = 'product_id'
+    template_name = 'food/product-details.html'
+    context_object_name = 'product'

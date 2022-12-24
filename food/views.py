@@ -4,9 +4,10 @@ from django.views.generic import ListView, TemplateView
 from hitcount.views import HitCountDetailView
 
 from blog.models import Blog
-from .models import (BestProduct, Category, CommentsHome, Products,
-                     Slider, ProductsImage, Comment)
+
 from .forms import CommentForm
+from .models import (BestProduct, Category, Comment, CommentsHome, Products,
+                     ProductsImage, Slider)
 
 
 class HomeView(TemplateView):

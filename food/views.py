@@ -4,7 +4,6 @@ from django.views.generic import ListView, TemplateView
 from hitcount.views import HitCountDetailView
 
 from blog.models import Blog
-
 from .forms import CommentForm
 from .models import (BestProduct, Category, Comment, CommentsHome, Products,
                      ProductsImage, Slider)
@@ -28,6 +27,7 @@ class FoodView(ListView):
     template_name = 'food/shop-page.html'
     context_object_name = 'products'
     paginate_by = 9
+    ordering = '-id'
 
     def get_queryset(self):
         queryset = super(FoodView, self).get_queryset()
@@ -63,4 +63,5 @@ class ProductsView(HitCountDetailView):
         context['photos'] = ProductsImage.objects.filter(products=product)
         context['comments'] = Comment.objects.filter(post__slug=self.kwargs['product'])
         context['form'] = self.form
+        context['recent_products'] = Products.objects.all().order_by('title')[:4]
         return context

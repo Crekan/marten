@@ -191,11 +191,12 @@
                 <h2>Recent Products</h2>
             </div>
             <div class="row">
+            {% for recent in recent_products %}
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div class="product-wrapper mb-10">
                         <div class="product-img">
-                            <a href="{% url 'food:product_detail' product.slug %}">
-                                <img src="{{ product.images.url }}" alt="">
+                            <a href="{% url 'food:product_detail' recent.slug %}">
+                                <img src="{{ recent.images.url }}" alt="">
                             </a>
                             <div class="product-action">
                                 <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
@@ -212,17 +213,18 @@
                             </div>
                         </div>
                         <div class="product-content">
-                            <h4><a href="{% url 'food:product_detail' product.slug %}">{{ product.title }}</a>
+                            <h4><a href="{% url 'food:product_detail' recent.slug %}">{{ recent.title }}</a>
                             </h4>
                             <div class="product-price">
-                                <span class="new">${{ product.new_price }} </span>
-                                {% if product.old_price %}
-                                    <span class="old">${{ product.old_price }}</span>
+                                <span class="new">${{ recent.new_price }} </span>
+                                {% if recent.old_price %}
+                                    <span class="old">${{ recent.old_price }}</span>
                                 {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
+            {% endfor %}
             </div>
         </div>
     </div>

@@ -1378,9 +1378,9 @@ textarea:focus {
     position: relative;
     z-index: 0;
 }
-.bg-1 {
-    background: url(../../images/bg/1.jpg);
-}
+/*.bg-1 {*/
+/*    background: url(../../images/bg/1.jpg);*/
+/*}*/
 .bg-img {
     background-position: center center;
     background-size: cover;

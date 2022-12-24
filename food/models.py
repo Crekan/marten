@@ -14,7 +14,7 @@ class Slider(models.Model):
 
 
 class Products(models.Model):
-    images = models.ImageField(upload_to='products_images/', verbose_name='Image')
+    images = models.FileField(upload_to='products_images/', verbose_name='Image')
     title = models.CharField(max_length=200, verbose_name='Header')
     slug = models.SlugField(unique=True, max_length=250, verbose_name='Url', db_index=True, null=True)
     description = models.TextField(verbose_name='Description', null=True)
@@ -38,6 +38,14 @@ class Products(models.Model):
     class Meta:
         verbose_name = 'Products'
         verbose_name_plural = 'Products'
+
+
+class ProductsImage(models.Model):
+    products = models.ForeignKey(Products, default=None, on_delete=models.CASCADE)
+    image = models.FileField(upload_to='images/')
+
+    def __str__(self):
+        return self.products.title
 
 
 class BestProduct(models.Model):

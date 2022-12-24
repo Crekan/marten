@@ -1,9 +1,10 @@
+from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView, TemplateView
 
 from blog.models import Blog
 
 from .models import (BestProduct, Category, CommentsHome, Products,
-                     Slider)
+                     Slider, ProductsImage)
 
 
 class HomeView(TemplateView):
@@ -41,3 +42,9 @@ class ProductsView(DetailView):
     slug_url_kwarg = 'product'
     template_name = 'food/product-details.html'
     context_object_name = 'product'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductsView, self).get_context_data()
+        product = get_object_or_404(Products, slug=self.kwargs['product'])
+        context['photos'] = ProductsImage.objects.filter(products=product)
+        return context

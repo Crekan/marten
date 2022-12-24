@@ -1,12 +1,17 @@
 from django.contrib import admin
 
 from .models import (Availability, BestProduct, Brand, Category, Color,
-                     CommentsHome, Length, Products, Size, Slider)
+                     CommentsHome, Length, Products, Size, Slider, ProductsImage)
+
+
+class ProductsImageAdmin(admin.StackedInline):
+    model = ProductsImage
 
 
 class ProductsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = (['color'])
+    inlines = [ProductsImageAdmin]
 
 
 admin.site.register(Slider)

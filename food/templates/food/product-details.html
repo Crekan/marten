@@ -28,25 +28,11 @@
                         <img id="zoompro" src="{{ product.images.url }}"
                              data-zoom-image="assets/img/product-details/bl1.jpg" alt="zoom"/>
                         <div id="gallery" class="mt-12 product-dec-slider owl-carousel">
-                            <a data-image="assets/img/product-details/l1.jpg"
-                               data-zoom-image="assets/img/product-details/bl1.jpg">
-                                <img src="assets/img/product-details/s1.jpg" alt="">
-                            </a>
-                            <a data-image="assets/img/product-details/l2.jpg"
-                               data-zoom-image="assets/img/product-details/bl2.jpg">
-                                <img src="assets/img/product-details/s2.jpg" alt="">
-                            </a>
-                            <a data-image="assets/img/product-details/l3.jpg"
-                               data-zoom-image="assets/img/product-details/bl3.jpg">
-                                <img src="assets/img/product-details/s3.jpg" alt="">
-                            </a>
-                            <a data-image="assets/img/product-details/l4.jpg"
-                               data-zoom-image="assets/img/product-details/bl4.jpg">
-                                <img src="assets/img/product-details/s4.jpg" alt="">
-                            </a>
-                            <a data-image="assets/img/product-details/l3.jpg"
-                               data-zoom-image="assets/img/product-details/bl3.jpg">
-                                <img src="assets/img/product-details/s3.jpg" alt="">
+                            {% for img in photos %}
+                                <a data-image="assets/img/product-details/l1.jpg"
+                                   data-zoom-image="assets/img/product-details/bl1.jpg">
+                                <img src="{{ img.image.url }}" alt="">
+                            {% endfor %}
                             </a>
                         </div>
                     </div>
@@ -257,7 +243,7 @@
             </div>
             <div class="related-product-active owl-carousel">
                 <div class="product-wrapper">
-                    <div class="product-img">
+                    <div class="">
                         <a href="{% url 'food:product_detail' product.slug %}">
                             <img src="{{ product.images.url }}" alt="">
                         </a>

@@ -1,10 +1,12 @@
-from django.shortcuts import get_object_or_404
-from django.views.generic import DetailView, ListView, TemplateView
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
+from django.views.generic import ListView, TemplateView
+from hitcount.views import HitCountDetailView
 
 from blog.models import Blog
-
 from .models import (BestProduct, Category, CommentsHome, Products,
-                     Slider, ProductsImage)
+                     Slider, ProductsImage, Comment)
+from .forms import CommentForm
 
 
 class HomeView(TemplateView):
@@ -37,14 +39,27 @@ class FoodView(ListView):
         return context
 
 
-class ProductsView(DetailView):
+class ProductsView(HitCountDetailView):
     model = Products
     slug_url_kwarg = 'product'
     template_name = 'food/product-details.html'
     context_object_name = 'product'
+    form = CommentForm
 
-    def get_context_data(self, **kwargs):
+    def post(self, request, *args, **kwargs):
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            product_name = self.get_object()
+            form.instance.user = request.user
+            form.instance.post = product_name
+            form.save()
+            return redirect(reverse('food:product_detail', kwargs={'product': product_name.slug}))
+
+    def get_context_data(self, *args, **kwargs):
         context = super(ProductsView, self).get_context_data()
-        product = get_object_or_404(Products, slug=self.kwargs['product'])
+        product_slug = self.kwargs['product']
+        product = get_object_or_404(Products, slug=product_slug)
         context['photos'] = ProductsImage.objects.filter(products=product)
+        context['comments'] = Comment.objects.filter(post__slug=self.kwargs['product'])
+        context['form'] = self.form
         return context

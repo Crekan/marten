@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
@@ -31,6 +32,8 @@ class Products(models.Model):
     size = models.ManyToManyField('Size')
     length = models.ManyToManyField('Length')
     brand = models.ManyToManyField('Brand')
+    # Reviews
+    comments = models.CharField(max_length=150, verbose_name='Comments', null=True)
 
     def __str__(self):
         return self.title
@@ -46,6 +49,16 @@ class ProductsImage(models.Model):
 
     def __str__(self):
         return self.products.title
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Products, on_delete=models.CASCADE, null=True)
+    text = models.TextField()
+    created = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.user}'
 
 
 class BestProduct(models.Model):

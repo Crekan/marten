@@ -24,18 +24,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                        <div class="product-details-img">
-                            <img id="zoompro" src="{{ product.images.url }}" data-zoom-image="{{ product.images.url }}" alt="zoom"/>
-                            <div id="gallery" class="mt-12 product-dec-slider owl-carousel">
-                                {% for p in photos %}
+                    <div class="product-details-img">
+                        <img id="zoompro" src="{{ product.images.url }}" data-zoom-image="{{ product.images.url }}"
+                             alt="zoom"/>
+                        <div id="gallery" class="mt-12 product-dec-slider owl-carousel">
+                            {% for p in photos %}
                                 <a data-image="{{ p.image.url }}" data-zoom-image="{{ p.image.url }}">
                                     <img src="{{ p.image.url }}" alt="">
                                 </a>
-                                {% endfor %}
-                            </div>
+                            {% endfor %}
                         </div>
-
                     </div>
+
+                </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product-details-content">
                         <h2>{{ product.title }}</h2>
@@ -143,84 +144,32 @@
                                 </li>
                             </ul>
                         </div>
-
                     </div>
                     <div id="des-details3" class="tab-pane">
-                        <div class="rattings-wrapper">
-                            <div class="sin-rattings">
-                                <div class="star-author-all">
-                                    <div class="product-rating f-left">
-                                        <i class="ti-star theme-color"></i>
-                                        <i class="ti-star theme-color"></i>
-                                        <i class="ti-star theme-color"></i>
-                                        <i class="ti-star theme-color"></i>
-                                        <i class="ti-star theme-color"></i>
-                                        <span>(5)</span>
+                        {% for comment in comments %}
+                            <div class="rattings-wrapper">
+                                <div class="sin-rattings">
+                                    <div class="star-author-all">
+                                        <div class="ratting-author f-right">
+                                            <h3>{{ comment.user }}</h3>
+                                            <span>{{ comment.created }}</span>
+                                        </div>
                                     </div>
-                                    <div class="ratting-author f-right">
-                                        <h3>tayeb rayed</h3>
-                                        <span>12:24</span>
-                                        <span>9 March 2018</span>
-                                    </div>
+                                    <p>{{ comment.text }}</p>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost rud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-                                    dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                    labore et dolore magna aliqua. Utenim ad minim veniam, quis nost.</p>
                             </div>
-                            <div class="sin-rattings">
-                                <div class="star-author-all">
-                                    <div class="product-rating f-left">
-                                        <i class="ti-star theme-color"></i>
-                                        <i class="ti-star theme-color"></i>
-                                        <i class="ti-star theme-color"></i>
-                                        <i class="ti-star theme-color"></i>
-                                        <i class="ti-star"></i>
-                                        <span>(4)</span>
-                                    </div>
-                                    <div class="ratting-author f-right">
-                                        <h3>farhana shuvo</h3>
-                                        <span>12:24</span>
-                                        <span>9 March 2018</span>
-                                    </div>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost rud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-                                    dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                    labore et dolore magna aliqua. Utenim ad minim veniam, quis nost.</p>
-                            </div>
-                        </div>
+                        {% endfor %}
                         <div class="ratting-form-wrapper">
                             <h3>Add your Comments :</h3>
                             <div class="ratting-form">
-                                <form action="#">
-                                    <div class="star-box">
-                                        <h2>Rating:</h2>
-                                        <div class="product-rating">
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star"></i>
-                                            <i class="ti-star"></i>
-                                            <span>(3)</span>
-                                        </div>
-                                    </div>
+
+                                <form action="#" method="post">
+                                    {% csrf_token %}
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="rating-form-style mb-20">
-                                                <input placeholder="Name" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="rating-form-style mb-20">
-                                                <input placeholder="Email" type="text">
-                                            </div>
-                                        </div>
                                         <div class="col-md-12">
                                             <div class="rating-form-style form-submit">
-                                                <textarea name="message" placeholder="Message"></textarea>
+                                                {#                                                <textarea name="message" placeholder="Message"></textarea>#}
+                                                {{ form.as_p }}
                                                 <input type="submit" value="add review">
                                             </div>
                                         </div>
@@ -242,38 +191,38 @@
                 <h2>Recent Products</h2>
             </div>
             <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                        <div class="product-wrapper mb-10">
-                            <div class="product-img">
-                                <a href="{% url 'food:product_detail' product.slug %}">
-                                    <img src="{{ product.images.url }}" alt="">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                    <div class="product-wrapper mb-10">
+                        <div class="product-img">
+                            <a href="{% url 'food:product_detail' product.slug %}">
+                                <img src="{{ product.images.url }}" alt="">
+                            </a>
+                            <div class="product-action">
+                                <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
+                                    <i class="ti-plus"></i>
                                 </a>
-                                <div class="product-action">
-                                    <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                        <i class="ti-plus"></i>
-                                    </a>
-                                    <a title="Add To Cart" href="#">
-                                        <i class="ti-shopping-cart"></i>
-                                    </a>
-                                </div>
-                                <div class="product-action-wishlist">
-                                    <a title="Wishlist" href="#">
-                                        <i class="ti-heart"></i>
-                                    </a>
-                                </div>
+                                <a title="Add To Cart" href="#">
+                                    <i class="ti-shopping-cart"></i>
+                                </a>
                             </div>
-                            <div class="product-content">
-                                <h4><a href="{% url 'food:product_detail' product.slug %}">{{ product.title }}</a>
-                                </h4>
-                                <div class="product-price">
-                                    <span class="new">${{ product.new_price }} </span>
-                                    {% if product.old_price %}
-                                        <span class="old">${{ product.old_price }}</span>
-                                    {% endif %}
-                                </div>
+                            <div class="product-action-wishlist">
+                                <a title="Wishlist" href="#">
+                                    <i class="ti-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h4><a href="{% url 'food:product_detail' product.slug %}">{{ product.title }}</a>
+                            </h4>
+                            <div class="product-price">
+                                <span class="new">${{ product.new_price }} </span>
+                                {% if product.old_price %}
+                                    <span class="old">${{ product.old_price }}</span>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>

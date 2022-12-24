@@ -23,15 +23,13 @@
                                     <h3 class="animated">{{ slider.product.description|truncatewords:5 }}</h3>
                                     <h1 class="animated">{{ slider.product.title }}</h1>
                                     <div class="slider-btn">
-                                        <a class="animated" href="{% url 'food:product_detail' slider.product.slug %}">SHOP
-                                            NOW</a>
+                                        <a class="animated" href="{% url 'food:product_detail' slider.product.slug %}">SHOP NOW</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12 col-sm-5">
                                 <div class="slider-single-img slider-animated-1">
-                                    <img class="animated" src="{{ slider.product.images.url }}"
-                                         alt="">
+                                    <img class="animated" src="{{ slider.product.images.url }}" alt="">
                                 </div>
                             </div>
                         </div>

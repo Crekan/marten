@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'hitcount',
+
     'food.apps.FoodConfig',
     'user.apps.UserConfig',
     'blog.apps.BlogConfig',

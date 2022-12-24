@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (Availability, BestProduct, Brand, Category, Color,
-                     CommentsHome, Length, Products, Size, Slider, ProductsImage)
+                     CommentsHome, Length, Products, Size, Slider, ProductsImage, Comment)
 
 
 class ProductsImageAdmin(admin.StackedInline):
@@ -24,3 +24,4 @@ admin.site.register(Color)
 admin.site.register(Availability)
 admin.site.register(Size)
 admin.site.register(Length)
+admin.site.register(Comment)

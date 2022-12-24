@@ -24,19 +24,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                    <div class="product-details-img">
-                        <img id="zoompro" src="{{ product.images.url }}"
-                             data-zoom-image="assets/img/product-details/bl1.jpg" alt="zoom"/>
-                        <div id="gallery" class="mt-12 product-dec-slider owl-carousel">
-                            {% for img in photos %}
-                                <a data-image="assets/img/product-details/l1.jpg"
-                                   data-zoom-image="assets/img/product-details/bl1.jpg">
-                                <img src="{{ img.image.url }}" alt="">
-                            {% endfor %}
-                            </a>
+                        <div class="product-details-img">
+                            <img id="zoompro" src="{{ product.images.url }}" data-zoom-image="{{ product.images.url }}" alt="zoom"/>
+                            <div id="gallery" class="mt-12 product-dec-slider owl-carousel">
+                                {% for p in photos %}
+                                <a data-image="{{ p.image.url }}" data-zoom-image="{{ p.image.url }}">
+                                    <img src="{{ p.image.url }}" alt="">
+                                </a>
+                                {% endfor %}
+                            </div>
                         </div>
+
                     </div>
-                </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product-details-content">
                         <h2>{{ product.title }}</h2>
@@ -234,43 +233,47 @@
             </div>
         </div>
     </div>
-
-    <div class="related-product-area pt-95 pb-80 gray-bg">
+    {#    Most Populer#}
+    {#    Related Products#}
+    <div class="product-area pt-95 pb-70 gray-bg">
         <div class="container">
             <div class="section-title text-center mb-55">
-                <h4>Most Populer</h4>
-                <h2>Related Products</h2>
+                <h4>Most Popular</h4>
+                <h2>Recent Products</h2>
             </div>
-            <div class="related-product-active owl-carousel">
-                <div class="product-wrapper">
-                    <div class="">
-                        <a href="{% url 'food:product_detail' product.slug %}">
-                            <img src="{{ product.images.url }}" alt="">
-                        </a>
-                        <div class="product-action">
-                            <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
-                                <i class="ti-plus"></i>
-                            </a>
-                            <a title="Add To Cart" href="#">
-                                <i class="ti-shopping-cart"></i>
-                            </a>
-                        </div>
-                        <div class="product-action-wishlist">
-                            <a title="Wishlist" href="#">
-                                <i class="ti-heart"></i>
-                            </a>
+            <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <div class="product-wrapper mb-10">
+                            <div class="product-img">
+                                <a href="{% url 'food:product_detail' product.slug %}">
+                                    <img src="{{ product.images.url }}" alt="">
+                                </a>
+                                <div class="product-action">
+                                    <a title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
+                                        <i class="ti-plus"></i>
+                                    </a>
+                                    <a title="Add To Cart" href="#">
+                                        <i class="ti-shopping-cart"></i>
+                                    </a>
+                                </div>
+                                <div class="product-action-wishlist">
+                                    <a title="Wishlist" href="#">
+                                        <i class="ti-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4><a href="{% url 'food:product_detail' product.slug %}">{{ product.title }}</a>
+                                </h4>
+                                <div class="product-price">
+                                    <span class="new">${{ product.new_price }} </span>
+                                    {% if product.old_price %}
+                                        <span class="old">${{ product.old_price }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">{{ product.title }}</a></h4>
-                        <div class="product-price">
-                            <span class="new">${{ product.new_price }} </span>
-                            {% if product.old_price %}
-                                <span class="old">${{ product.old_price }}</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

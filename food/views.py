@@ -1,4 +1,6 @@
-from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views.generic import ListView, TemplateView
 from hitcount.views import HitCountDetailView
@@ -6,7 +8,7 @@ from hitcount.views import HitCountDetailView
 from blog.models import Blog
 from .forms import CommentForm
 from .models import (BestProduct, Category, Comment, CommentsHome, Products,
-                     ProductsImage, Slider)
+                     ProductsImage, Slider, Basket)
 
 
 class HomeView(TemplateView):
@@ -65,3 +67,32 @@ class ProductsView(HitCountDetailView):
         context['form'] = self.form
         context['recent_products'] = Products.objects.all().order_by('title')[:4]
         return context
+
+
+def cart(request):
+    baskets = Basket.objects.all()
+    context = {
+        'baskets': baskets,
+    }
+    return render(request, 'food/cart.html', context)
+
+
+@login_required
+def basket_add(request, product_id):
+    product = Products.objects.get(id=product_id)
+    baskets = Basket.objects.filter(user=request.user, product=product)
+
+    if not baskets.exists():
+        Basket.objects.create(user=request.user, product=product, quantity=1)
+    else:
+        baskets = baskets.first()
+        baskets.quantity += 1
+        baskets.save()
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+@login_required
+def basket_remove(request, basket_id):
+    basket = Basket.objects.get(id=basket_id)
+    basket.delete()
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])

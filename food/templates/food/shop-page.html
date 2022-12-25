@@ -43,7 +43,7 @@
                                     <div class="product-width col-lg-6 col-xl-4 col-md-6 col-sm-6">
                                         <div class="product-wrapper mb-10">
                                             <div class="product-img">
-                                                <a href="{% url 'food:product_detail' product.slug %}">
+                                                <a href="{% url 'food:product_detail' product.id %}">
                                                     <img src="{{ product.images.url }}" alt="">
                                                 </a>
                                                 <div class="product-action">
@@ -64,7 +64,7 @@
                                             </div>
                                             <div class="product-content">
                                                 <h4>
-                                                    <a href="{% url 'food:product_detail' product.slug %}">{{ product.title }}</a>
+                                                    <a href="{% url 'food:product_detail' product.id %}">{{ product.title }}</a>
                                                 </h4>
                                                 <div class="product-price">
                                                     <span class="new">${{ product.new_price }} </span>
@@ -84,7 +84,7 @@
                                                 <p>{{ product.description|truncatewords:150 }}</p>
                                                 <div class="product-list-action">
                                                     <div class="product-list-action-left">
-                                                        <a class="addtocart-btn" title="Add to cart" href="#"><i
+                                                        <a class="addtocart-btn" title="Add to cart" href="{% url 'food:basket_add' product.id %}"><i
                                                                 class="ion-bag"></i> Add to cart</a>
                                                     </div>
                                                     <div class="product-list-action-right">

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import FoodView, ProductsView
+from .views import FoodView, ProductsView, basket_add, basket_remove, cart
 
 app_name = 'food'
 
@@ -8,4 +8,7 @@ urlpatterns = [
     path('', FoodView.as_view(), name='food'),
     path('category/<int:category_id>/', FoodView.as_view(), name='category'),
     path('product/<slug:product>/', ProductsView.as_view(), name='product_detail'),
+    path('cart/', cart, name='cart'),
+    path('basket/add/<int:product_id>/', basket_add, name='basket_add'),
+    path('basket/remove/<int:basket_id>/', basket_remove, name='basket_remove'),
 ]

@@ -78,7 +78,7 @@
                         </div>
                         <div class="product-list-action">
                             <div class="product-list-action-left">
-                                <a class="addtocart-btn" href="#" title="Add to cart">
+                                <a class="addtocart-btn" href="{% url 'food:basket_add' product.id %}" title="Add to cart">
                                     <i class="ion-bag"></i>
                                     Add to cart
                                 </a>
@@ -195,7 +195,7 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                     <div class="product-wrapper mb-10">
                         <div class="product-img">
-                            <a href="{% url 'food:product_detail' recent.slug %}">
+                            <a href="{% url 'food:product_detail' recent.id %}">
                                 <img src="{{ recent.images.url }}" alt="">
                             </a>
                             <div class="product-action">
@@ -213,7 +213,7 @@
                             </div>
                         </div>
                         <div class="product-content">
-                            <h4><a href="{% url 'food:product_detail' recent.slug %}">{{ recent.title }}</a>
+                            <h4><a href="{% url 'food:product_detail' recent.id %}">{{ recent.title }}</a>
                             </h4>
                             <div class="product-price">
                                 <span class="new">${{ recent.new_price }} </span>

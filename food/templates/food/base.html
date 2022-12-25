@@ -114,8 +114,10 @@
                                 </li>
                                 <div class="header-cart same-style">
                                     <button class="icon-cart">
-                                        <i class="icon-handbag"></i>
-                                        <span class="count-style">02</span>
+                                        <a href="{% url 'food:cart' %}">
+                                            <i class="icon-handbag"></i>
+                                            <span class="count-style">02</span>
+                                        </a>
                                     </button>
                                 </div>
                             </ul>
@@ -138,7 +140,6 @@
                             </ul>
                         </nav>
                     </div>
-                    {#                        <a href="{% url 'authorization' %}"><i class="icon-user icons"></i></a>#}
                 {% endif %}
             </div>
         </div>
@@ -230,8 +231,6 @@
                 </nav>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 </header>
 

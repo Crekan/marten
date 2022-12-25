@@ -62,6 +62,16 @@ class Comment(models.Model):
         return f'{self.user}'
 
 
+class Basket(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User')
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, verbose_name='Product')
+    quantity = models.PositiveIntegerField(default=0, verbose_name='Quantity')
+    created_timestamp = models.DateTimeField(auto_now_add=True, verbose_name='')
+
+    def __str__(self):
+        return f'Basket for {self.user.username} | Product {self.product.title}'
+
+
 class BestProduct(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, verbose_name='Best Product')
     end_of_discount = models.DateField(null=True)

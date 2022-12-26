@@ -112,14 +112,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <div class="header-cart same-style">
-                                    <button class="icon-cart">
-                                        <a href="{% url 'food:cart' %}">
-                                            <i class="icon-handbag"></i>
-                                            <span class="count-style">02</span>
-                                        </a>
-                                    </button>
-                                </div>
+                                {% include 'food/basket_for_base.html' %}
                             </ul>
                         </nav>
                     </div>

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import (BestProduct, Brand, Category, Length, Products,
-                     ProductsImage, Slider, Basket)
+from .models import (Basket, BestProduct, Brand, Category, Length, Products,
+                     ProductsImage, Slider)
 
 
 class ProductsImageAdmin(admin.StackedInline):

@@ -7,6 +7,7 @@ from django.views import View
 from django.views.generic import CreateView, UpdateView
 
 from .forms import UserLoginForm, UserProfileForm, UserRegistrationForm
+from food.models import Basket
 
 
 class UserLoginView(LoginView):
@@ -28,6 +29,11 @@ class UserProfileView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('profile', args=(self.object.id,))
+
+    def get_context_data(self, **kwargs):
+        context = super(UserProfileView, self).get_context_data()
+        context['baskets'] = Basket.objects.all()
+        return context
 
 
 class UserLogoutView(View):

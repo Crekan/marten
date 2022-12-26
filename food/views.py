@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views.generic import ListView, TemplateView
@@ -7,8 +7,8 @@ from hitcount.views import HitCountDetailView
 
 from blog.models import Blog
 from .forms import CommentForm
-from .models import (BestProduct, Category, Comment, CommentsHome, Products,
-                     ProductsImage, Slider, Basket)
+from .models import (Basket, BestProduct, Category, Comment, CommentsHome,
+                     Products, ProductsImage, Slider, Rating)
 
 
 class HomeView(TemplateView):
@@ -21,6 +21,7 @@ class HomeView(TemplateView):
         context['best_products'] = BestProduct.objects.order_by('-id')[:1]
         context['comments_home'] = CommentsHome.objects.all()
         context['blogs'] = Blog.objects.all().order_by('-id')[:3]
+        context['baskets'] = Basket.objects.all()
         return context
 
 
@@ -39,6 +40,7 @@ class FoodView(ListView):
     def get_context_data(self, **kwargs):
         context = super(FoodView, self).get_context_data()
         context['categories'] = Category.objects.all()
+        context['baskets'] = Basket.objects.all()
         return context
 
 
@@ -66,15 +68,17 @@ class ProductsView(HitCountDetailView):
         context['comments'] = Comment.objects.filter(post__slug=self.kwargs['product'])
         context['form'] = self.form
         context['recent_products'] = Products.objects.all().order_by('title')[:4]
+        context['baskets'] = Basket.objects.all()
         return context
 
 
-def cart(request):
-    baskets = Basket.objects.all()
-    context = {
-        'baskets': baskets,
-    }
-    return render(request, 'food/cart.html', context)
+class CartView(TemplateView):
+    template_name = 'food/cart.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CartView, self).get_context_data()
+        context['baskets'] = Basket.objects.all()
+        return context
 
 
 @login_required

@@ -71,6 +71,9 @@ class Basket(models.Model):
     def __str__(self):
         return f'Basket for {self.user.username} | Product {self.product.title}'
 
+    def sum(self):
+        return self.product.new_price * self.quantity
+
 
 class BestProduct(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, verbose_name='Best Product')

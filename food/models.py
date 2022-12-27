@@ -62,11 +62,18 @@ class Comment(models.Model):
         return f'{self.user}'
 
 
+class BasketQuerySet(models.QuerySet):
+    def total_sum(self):
+        return sum(basket.sum() for basket in self)
+
+
 class Basket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User')
     product = models.ForeignKey(Products, on_delete=models.CASCADE, verbose_name='Product')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Quantity')
     created_timestamp = models.DateTimeField(auto_now_add=True, verbose_name='')
+
+    objects = BasketQuerySet.as_manager()
 
     def __str__(self):
         return f'Basket for {self.user.username} | Product {self.product.title}'

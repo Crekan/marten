@@ -8,7 +8,7 @@ from hitcount.views import HitCountDetailView
 from blog.models import Blog
 from .forms import CommentForm
 from .models import (Basket, BestProduct, Category, Comment, CommentsHome,
-                     Products, ProductsImage, Slider, Rating)
+                     Products, ProductsImage, Slider)
 
 
 class HomeView(TemplateView):

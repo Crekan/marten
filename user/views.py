@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import UserLoginForm, UserProfileForm, UserRegistrationForm
 from food.models import Basket
@@ -22,7 +23,7 @@ class UserRegistrationView(CreateView):
     form_class = UserRegistrationForm
 
 
-class UserProfileView(UpdateView):
+class UserProfileView(LoginRequiredMixin, UpdateView):
     model = User
     template_name = 'user/my-account.html'
     form_class = UserProfileForm
@@ -32,7 +33,7 @@ class UserProfileView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(UserProfileView, self).get_context_data()
-        context['baskets'] = Basket.objects.all()
+        context['baskets'] = Basket.objects.filter(user=self.request.user)
         return context
 
 

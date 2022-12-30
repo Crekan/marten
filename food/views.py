@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views.generic import ListView, TemplateView
 from hitcount.views import HitCountDetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from blog.models import Blog
 from .forms import CommentForm
@@ -41,7 +42,8 @@ class FoodView(ListView):
     def get_context_data(self, **kwargs):
         context = super(FoodView, self).get_context_data()
         context['categories'] = Category.objects.all()
-        context['baskets'] = Basket.objects.filter(user=self.request.user)
+        if self.request.user.is_authenticated:
+            context['baskets'] = Basket.objects.filter(user=self.request.user)
         return context
 
 
@@ -69,11 +71,12 @@ class ProductsView(HitCountDetailView):
         context['comments'] = Comment.objects.filter(post__slug=self.kwargs['product'])
         context['form'] = self.form
         context['recent_products'] = Products.objects.all().order_by('title')[:4]
-        context['baskets'] = Basket.objects.filter(user=self.request.user)
+        if self.request.user.is_authenticated:
+            context['baskets'] = Basket.objects.filter(user=self.request.user)
         return context
 
 
-class CartView(TemplateView):
+class CartView(LoginRequiredMixin, TemplateView):
     template_name = 'food/cart.html'
 
     def get_context_data(self, **kwargs):

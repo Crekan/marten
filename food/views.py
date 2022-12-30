@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpRequest, HttpResponse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views.generic import ListView, TemplateView
 from hitcount.views import HitCountDetailView
@@ -21,7 +21,8 @@ class HomeView(TemplateView):
         context['best_products'] = BestProduct.objects.order_by('-id')[:1]
         context['comments_home'] = CommentsHome.objects.all()
         context['blogs'] = Blog.objects.all().order_by('-id')[:3]
-        context['baskets'] = Basket.objects.all()
+        if self.request.user.is_authenticated:
+            context['baskets'] = Basket.objects.filter(user=self.request.user)
         return context
 
 
@@ -40,7 +41,7 @@ class FoodView(ListView):
     def get_context_data(self, **kwargs):
         context = super(FoodView, self).get_context_data()
         context['categories'] = Category.objects.all()
-        context['baskets'] = Basket.objects.all()
+        context['baskets'] = Basket.objects.filter(user=self.request.user)
         return context
 
 
@@ -68,7 +69,7 @@ class ProductsView(HitCountDetailView):
         context['comments'] = Comment.objects.filter(post__slug=self.kwargs['product'])
         context['form'] = self.form
         context['recent_products'] = Products.objects.all().order_by('title')[:4]
-        context['baskets'] = Basket.objects.all()
+        context['baskets'] = Basket.objects.filter(user=self.request.user)
         return context
 
 
@@ -77,7 +78,7 @@ class CartView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(CartView, self).get_context_data()
-        context['baskets'] = Basket.objects.all()
+        context['baskets'] = Basket.objects.filter(user=self.request.user)
         return context
 
 

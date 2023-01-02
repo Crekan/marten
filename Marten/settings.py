@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'hitcount',
     'debug_toolbar',
+    'tinymce',
 
     'food.apps.FoodConfig',
     'user.apps.UserConfig',

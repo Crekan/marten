@@ -1,14 +1,15 @@
 from django.contrib.auth import logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+
+from food.models import Basket
 
 from .forms import UserLoginForm, UserProfileForm, UserRegistrationForm
-from food.models import Basket
 
 
 class UserLoginView(LoginView):

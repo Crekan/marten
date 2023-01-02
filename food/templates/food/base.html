@@ -77,21 +77,15 @@
                             <ul>
                                 <li><a href="{% url 'home' %}">HOME</a></li>
                                 <li class="mega-menu-position"><a href="{% url 'food:food' %}">Food</a></li>
-                                <li><a href="blog-leftsidebar.html">Blog</a>
-                                    <ul class="submenu">
-                                        <li>
-                                            <a href="blog.html">blog page</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-leftsidebar.html">blog left sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-details.html">blog details</a>
-                                        </li>
-                                    </ul>
+                                <li>
+                                    <a href="{% url 'blog:blog' %}">Blog</a>
                                 </li>
-                                <li><a href="about-us.html">ABOUT</a></li>
-                                <li><a href="contact.html">contact us</a></li>
+                                <li>
+                                    <a href="about-us.html">ABOUT</a>
+                                </li>
+                                <li>
+                                    <a href="contact.html">contact us</a>
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -120,7 +114,8 @@
                     <div class="main-menu text-center">
                         <nav>
                             <ul>
-                                <li><a href="{% url 'authorization' %}"><img src="{% static 'assets/img/door.png' %}" alt=""></a>
+                                <li><a href="{% url 'authorization' %}"><img src="{% static 'assets/img/door.png' %}"
+                                                                             alt=""></a>
                                     <ul class="submenu">
                                         <li>
                                             <a href="{% url 'authorization' %}">Login</a>
@@ -206,18 +201,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="#">blog</a>
-                            <ul>
-                                <li>
-                                    <a href="blog.html">blog page</a>
-                                </li>
-                                <li>
-                                    <a href="blog-leftsidebar.html">blog left sidebar</a>
-                                </li>
-                                <li>
-                                    <a href="blog-details.html">blog details</a>
-                                </li>
-                            </ul>
+                        <li>
+                            <a href="{% url 'blog:blog' %}">blog</a>
                         </li>
                         <li><a href="contact.html"> Contact us </a></li>
                     </ul>

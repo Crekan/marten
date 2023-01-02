@@ -8,6 +8,7 @@ from food.views import HomeView
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    path('blog/', include('blog.urls')),
     path('food/', include('food.urls')),
     path('user/', include('user.urls')),
 

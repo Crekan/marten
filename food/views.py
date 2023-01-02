@@ -1,12 +1,13 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views.generic import ListView, TemplateView
 from hitcount.views import HitCountDetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 from blog.models import Blog
+
 from .forms import CommentForm
 from .models import (Basket, BestProduct, Category, Comment, CommentsHome,
                      Products, ProductsImage, Slider)

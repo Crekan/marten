@@ -1,11 +1,7 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView, ListView
+from django.views.generic import ListView
+from hitcount.views import HitCountDetailView
 
 from blog.models import Blog
-
-
-def blog(request):
-    return render(request, 'blog/blog.html')
 
 
 class BlogView(ListView):
@@ -15,3 +11,8 @@ class BlogView(ListView):
     paginate_by = 6
 
 
+class BlogDetailView(HitCountDetailView):
+    model = Blog
+    slug_url_kwarg = 'blog'
+    template_name = 'blog/blog-details.html'
+    context_object_name = 'blog'

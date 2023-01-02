@@ -29,7 +29,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="blog-wrapper mb-30 gray-bg">
                             <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="{{ blog.image.url }}"></a>
+                                <a href="{% url 'blog:detail_blog' blog.slug %}"><img alt="" src="{{ blog.image.url }}"></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-meta">
@@ -38,7 +38,7 @@
                                         <li>{{ blog.date_added }}</li>
                                     </ul>
                                 </div>
-                                <h4><a href="blog-details.html">{{ blog.title }}</a></h4>
+                                <h4><a href="{% url 'blog:detail_blog' blog.slug %}">{{ blog.title }}</a></h4>
                             </div>
                         </div>
                     </div>

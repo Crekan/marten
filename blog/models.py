@@ -7,6 +7,8 @@ class Blog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User')
     date_added = models.DateField(auto_now=True, verbose_name='Date Added')
     title = models.CharField(max_length=250, verbose_name='Header')
+    slug = models.SlugField(unique=True, max_length=250, verbose_name='Url', db_index=True, null=True)
+
 
     def __str__(self):
         return self.title

@@ -8,11 +8,13 @@ from food.views import HomeView
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    path('', HomeView.as_view(), name='home'),
+
     path('blog/', include('blog.urls')),
     path('food/', include('food.urls')),
     path('user/', include('user.urls')),
 
-    path('', HomeView.as_view(), name='home'),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
 if settings.DEBUG:

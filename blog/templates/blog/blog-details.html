@@ -55,36 +55,44 @@
                         </div>
                         <div class="blog-comment-wrapper mt-55">
                             <h4 class="blog-dec-title">comments : {{ comments.count }}</h4>
-                            <div class="single-comment-wrapper mt-50 ml-125">
-                                <div class="blog-comment-img">
-                                    <img src="assets/img/blog/blog-comment2.png" alt="">
+                            {% if user.is_authenticated %}
+                                <div class="blog-reply-wrapper mt-50">
+                                    <h4 class="blog-dec-title">post a comment</h4>
+
+                                    <form action="#" method="post">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="text-leave">
+                                                    {{ form.as_p }}
+                                                    <input type="submit" value="SEND MASSAGE">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
+                            {% else %}
                                 {% for comment in comments %}
-                                    <div class="blog-comment-content">
-                                        <h4>{{ comment.user }}</h4>
-                                        <span>{{ comment.created }} </span>
-                                        <p>{{ comment.text }}</p>
-                                        <div class="blog-details-btn">
-                                            <a href="blog-details.html">read more</a>
+                                    <div class="single-comment-wrapper mt-50 ml-125">
+                                        <div class="blog-comment-img">
+                                            <img src="{% static 'assets/img/default_avatar.jpg' %}" alt="" width="850">
+                                        </div>
+                                        <div class="blog-comment-content">
+                                            <h4>{{ comment.user }}</h4>
+                                            <span>{{ comment.created }} </span>
+                                            <p>{{ comment.text }}</p>
+                                            <div class="blog-details-btn">
+                                                <a href="blog-details.html">read more</a>
+                                            </div>
                                         </div>
                                     </div>
                                 {% endfor %}
-                            </div>
-                        </div>
-                        <div class="blog-reply-wrapper mt-50">
-                            <h4 class="blog-dec-title">post a comment</h4>
+                                <br>
+                                <br>
+                                <br>
+                                <h4 class="blog-dec-title">To leave a comment, please register or log in</h4>
+                            {% endif %}
 
-                            <form action="#" method="post">
-                                {% csrf_token %}
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="text-leave">
-                                            {{ form.as_p }}
-                                            <input type="submit" value="SEND MASSAGE">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>

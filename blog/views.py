@@ -4,6 +4,7 @@ from django.views.generic import ListView
 from hitcount.views import HitCountDetailView
 
 from blog.models import Blog, BlogImage, Comment
+from food.models import Basket
 from .forms import CommentForm
 
 
@@ -13,6 +14,12 @@ class BlogView(ListView):
     context_object_name = 'blogs'
     paginate_by = 6
     ordering = '-id'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(BlogView, self).get_context_data()
+        if self.request.user.is_authenticated:
+            context['baskets'] = Basket.objects.filter(user=self.request.user)
+        return context
 
 
 class BlogDetailView(HitCountDetailView):
@@ -38,4 +45,6 @@ class BlogDetailView(HitCountDetailView):
         context['photos'] = BlogImage.objects.filter(blog=blog).order_by('-id')[:2]
         context['form'] = self.form
         context['comments'] = Comment.objects.filter(blog__slug=self.kwargs['blog'])
+        if self.request.user.is_authenticated:
+            context['baskets'] = Basket.objects.filter(user=self.request.user)
         return context

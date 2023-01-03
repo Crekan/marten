@@ -26,3 +26,13 @@ class BlogImage(models.Model):
 
     def __str__(self):
         return self.blog.title
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog')
+    text = models.TextField()
+    created = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.user

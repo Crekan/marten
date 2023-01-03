@@ -34,8 +34,6 @@ class Products(models.Model):
     length = models.ManyToManyField('Length')
     brand = models.ManyToManyField('Brand')
 
-    # Reviews
-
     def __str__(self):
         return self.title
 

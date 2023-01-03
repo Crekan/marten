@@ -35,7 +35,7 @@
                                     <ul>
                                         <li>{{ blog.date_added }}</li>
                                         <li>
-                                            <a href="#"> 02 Comments</a>
+                                            <a href="#"> {{ comments.count }} Comments</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -54,53 +54,32 @@
                             </div>
                         </div>
                         <div class="blog-comment-wrapper mt-55">
-                            <h4 class="blog-dec-title">comments : 02</h4>
-                            <div class="single-comment-wrapper mt-35">
-                                <div class="blog-comment-img">
-                                    <img src="assets/img/blog/blog-comment1.png" alt="">
-                                </div>
-                                <div class="blog-comment-content">
-                                    <h4>Anthony Stephens</h4>
-                                    <span>October 14, 2018 </span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolor magna aliqua. Ut enim ad minim veniam, </p>
-                                    <div class="blog-details-btn">
-                                        <a href="blog-details.html">read more</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <h4 class="blog-dec-title">comments : {{ comments.count }}</h4>
                             <div class="single-comment-wrapper mt-50 ml-125">
                                 <div class="blog-comment-img">
                                     <img src="assets/img/blog/blog-comment2.png" alt="">
                                 </div>
-                                <div class="blog-comment-content">
-                                    <h4>Anthony Stephens</h4>
-                                    <span>October 14, 2018 </span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolor magna aliqua. Ut enim ad minim veniam, </p>
-                                    <div class="blog-details-btn">
-                                        <a href="blog-details.html">read more</a>
+                                {% for comment in comments %}
+                                    <div class="blog-comment-content">
+                                        <h4>{{ comment.user }}</h4>
+                                        <span>{{ comment.created }} </span>
+                                        <p>{{ comment.text }}</p>
+                                        <div class="blog-details-btn">
+                                            <a href="blog-details.html">read more</a>
+                                        </div>
                                     </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="blog-reply-wrapper mt-50">
                             <h4 class="blog-dec-title">post a comment</h4>
-                            <form action="#">
+
+                            <form action="#" method="post">
+                                {% csrf_token %}
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="leave-form">
-                                            <input type="text" placeholder="Full Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="leave-form">
-                                            <input type="email" placeholder="Eail Address ">
-                                        </div>
-                                    </div>
                                     <div class="col-md-12">
                                         <div class="text-leave">
-                                            <textarea placeholder="Massage"></textarea>
+                                            {{ form.as_p }}
                                             <input type="submit" value="SEND MASSAGE">
                                         </div>
                                     </div>

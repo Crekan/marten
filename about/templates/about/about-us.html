@@ -1,0 +1,149 @@
+{% extends 'food/base.html' %}
+{% load static %}
+
+
+{% block title %}
+    About
+{% endblock %}
+
+
+{% block content %}
+    <div class="breadcrumb-area pt-95 pb-95 bg-img"
+         style="background-image:url({% static 'assets/img/banner/banner-2.jpg' %});">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <h2>About Us</h2>
+                <ul>
+                    <li><a href="index.html">home</a></li>
+                    <li class="active">About Us</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="about-us-area pt-100 pb-100">
+        <div class="container">
+            {% for card in cards %}
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="about-us-img pr-30 wow fadeInLeft">
+                            <img alt="" src="{{ card.images.url }}">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 d-flex align-items-center">
+                        <div class="about-us-content">
+                            <h2>{{ card.title }}</h2>
+                            <p>{{ card.description|safe|truncatechars:300 }}</p>
+                            <div class="about-us-list">
+                                {{ card.advantages|safe }}
+                            </div>
+                            <div class="about-us-btn">
+                                <a class="btn-style" href="#">CONTACT US</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="project-count-area pb-70 pt-100 gray-bg">
+        <div class="container">
+            {% for statistic in statistics %}
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="single-count mb-30 text-center">
+                            <h2 class="count">{{ statistic.years_in_business }}</h2>
+                            <span>Years in Business</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="single-count mb-30 text-center">
+                            <h2 class="count">{{ statistic.happy_people }}</h2>
+                            <span>Happy People</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="single-count mb-30 text-center">
+                            <h2 class="count">{{ statistic.billion_sales }}</h2>
+                            <span>Billion Sales</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                        <div class="single-count mb-30 text-center">
+                            <h2 class="count">{{ statistic.award_winning }}</h2>
+                            <span>Award Winning</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="testimonial-area pt-90 pb-70 bg-img"
+         style="background-image:url({% static 'assets/img/banner/banner-1.jpg' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 ml-auto mr-auto">
+                    <div class="testimonial-wrap">
+                        <div class="testimonial-text-slider text-center">
+                            {% for comment_home in comments_home %}
+                                <div class="sin-testiText">
+                                    <p>{{ comment_home.comment }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="testimonial-image-slider text-center">
+                            {% for comment_home in comments_home %}
+                                <div class="sin-testiImage">
+                                    <img src="{{ comment_home.images.url }}" alt="">
+                                    <h3>{{ comment_home.full_name }}</h3>
+                                    <h5>{{ comment_home.profession }}</h5>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="testimonial-shap">
+                            <img src="{% static 'assets/img/icon-img/testi-shap.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="team-ara pt-95 pb-70">
+        <div class="container">
+            <div class="section-title text-center mb-55">
+                <h2>Our Team</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing</p>
+            </div>
+            <div class="row">
+                {% for team_people in team %}
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="team-wrapper mb-30">
+                            <div class="team-img">
+                                <a href="#">
+                                    <img src="{{ team_people.images.url }}" alt="">
+                                </a>
+                                <div class="team-social">
+                                    <a href="#">
+                                        <i class="ti-facebook"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="ti-pinterest"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="ti-twitter-alt"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="ti-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="team-content text-center">
+                                <h4>{{ team_people.fio }}</h4>
+                                <span>{{ team_people.job_title }} </span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

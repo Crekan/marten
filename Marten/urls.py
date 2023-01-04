@@ -13,6 +13,7 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('food/', include('food.urls')),
     path('user/', include('user.urls')),
+    path('about/', include('about.urls')),
 
     path('__debug__/', include('debug_toolbar.urls')),
     path('tinymce/', include('tinymce.urls')),

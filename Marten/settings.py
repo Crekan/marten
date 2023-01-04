@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'food.apps.FoodConfig',
     'user.apps.UserConfig',
     'blog.apps.BlogConfig',
+    'about.apps.AboutConfig',
 ]
 
 MIDDLEWARE = [
@@ -149,4 +150,3 @@ LOGIN_URL = 'authorization'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-

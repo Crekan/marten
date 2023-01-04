@@ -14,6 +14,7 @@ urlpatterns = [
     path('food/', include('food.urls')),
     path('user/', include('user.urls')),
     path('about/', include('about.urls')),
+    path('contact', include('contact.urls')),
 
     path('__debug__/', include('debug_toolbar.urls')),
     path('tinymce/', include('tinymce.urls')),
